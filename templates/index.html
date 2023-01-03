@@ -12,17 +12,9 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in item.image.url %}
-                                <img alt="hammer" class="card-img-top"
-                                    src="https://images.pexels.com/photos/209235/pexels-photo-209235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                                {% else %}
-                                <img src=" {{ item.image.url }} " class="card-img-top">
-                                {% endif %}
-                                <h2 class="card-title">{{ item.name }}</h2>
-                                <hr />
-                                <p class="card-text text-muted h6">{{ item.timestamp }}</p>
-                            </div>
+                            {{ item.name }}
+                            {{ item.quantity }}
+                            {{ item.folder }}
                         </div>
                     </div>
                 </div>
@@ -32,6 +24,7 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            <a href="/add">Add an Item</a>
             
         </div>
     </div>

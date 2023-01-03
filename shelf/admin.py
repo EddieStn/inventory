@@ -1,11 +1,14 @@
 from django.contrib import admin
-from .models import Item
-from django_summernote.admin import SummernoteModelAdmin
+from .models import Item, Folder
 
 
-@admin.register(Item)
-class ItemAdmin(SummernoteModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'quantity', 'description', 'folder', )
 
-    summernote_fields = ('description')
-    list_display = ('name', 'timestamp')
-    search_fields = ['name', 'description']
+
+class FolderAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+
+admin.site.register(Item, ItemAdmin)
+admin.site.register(Folder, FolderAdmin)

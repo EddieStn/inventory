@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Item Entries Column -->
+        <div class="col-12 mt-3 left">
+            <form action="add" method="POST">
+                {% csrf_token %} 
+                <div>
+                    <p>
+                        <label for="id_name">Name:</label>
+                        <input type="text" id="id_name" name="item_name">
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        
+                        <label for="id_quantity">Quantity:</label>
+                        <input type="text" id="id_quantity" name="item_quantity">
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        
+                        <label for="id_quantity">Folder:</label>
+                        <input type="text" id="id_folder" name="item_folder">
+                    </p>
+                </div>
+                <div>
+                    <p><button type="submit">Add Item</button></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
