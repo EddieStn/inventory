@@ -8,13 +8,11 @@
         <!-- Item Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                {% for item in item_list%}
+                {% for folder in folder %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            {{ item.name }}
-                            {{ item.quantity }}
-                            {{ item.folder }}
+                            {{ folder.name }}
                         </div>
                     </div>
                 </div>
@@ -24,7 +22,7 @@
                 {% endif %}
                 {% endfor %}
             </div>
-            <a href="/add">Add an Item</a>
+            <a href="/add_folder">Add a Folder</a>
             
         </div>
     </div>
@@ -43,4 +41,4 @@
     {% endif %}
 </div>
 
-{%endblock%}
+{% endblock %}

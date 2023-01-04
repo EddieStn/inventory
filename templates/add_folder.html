@@ -7,12 +7,12 @@
 
         <!-- Item Entries Column -->
         <div class="col-12 mt-3 left">
-            <form method="POST" action="add_item">
+            <form method="POST" action="add_folder">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div>
                     <p>
-                        <button type="submit">Add Item</button>
+                        <button type="submit">Add Folder</button>
                     </p>
                 </div>
             </form>

@@ -49,11 +49,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'django_summernote',
     'shelf',
 ]
-
-X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
