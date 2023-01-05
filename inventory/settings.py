@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'shelf',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -103,6 +105,10 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
