@@ -1,29 +1,38 @@
 from django.db import models
-from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
 
 
-class Folder(models.Model):
+class Category(models.Model):
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False, blank=False)
-    crated_on = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-timestamp']
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
 
 class Item(models.Model):
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False, blank=False)
-    description = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=0)
-    crated_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(auto_now=True)
-    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(
+        Category, related_name='items', on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-timestamp']
 
     def __str__(self):
         return self.name
