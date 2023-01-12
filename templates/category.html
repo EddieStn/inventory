@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% block title %} Folder Page {% endblock %}
+{% block title %} category Page {% endblock %}
 {% block content %}
 
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Item Entries Column -->
+        <!-- Folder Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                {% for folder in folder %}
+                {% for category in category %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <button>{{ folder.name }}</button>
+                            <button>{{ category.name }}</button>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 {% endif %}
                 {% endfor %}
             </div>
-            <a href="/add_folder">Add a Folder</a>
+            <a href="/add_category">Add a category</a>
             
         </div>
     </div>

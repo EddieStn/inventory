@@ -1,0 +1,13 @@
+<h1 class="head">{{ category.name }}</h1>
+<h1>HI</h1>
+
+<h3>Items for this category</h3>
+<div>
+    {% for item in items %}
+    <div>
+        {{ item.name }}
+        {{ item.quantity }}
+        {{ item.notes }}
+    </div>
+    {% endfor %}
+</div>

@@ -1,17 +1,18 @@
 from django.contrib import admin
-from .models import Item, Folder
+from .models import Item, Category
 
 admin.site.site_header = 'Inventory'
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'quantity', 'description', 'folder', )
-    list_filter = ('folder', )
+    list_display = ('quantity', 'name', 'category', 'notes', )
+    list_filter = ('category', 'created_on')
 
 
-class FolderAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', )
 
 
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Folder, FolderAdmin)
+admin.site.register(Category, CategoryAdmin)

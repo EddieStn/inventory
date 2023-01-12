@@ -1,0 +1,42 @@
+
+class CategoryDetailView(DetailView):
+    model = Category
+    context_object_name = 'category'
+    template_name = 'category_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = self.model.objects.all()
+        context['items'] = Item.objects.all()
+        context['category_items'] = self.object.items.all()
+        return context
+
+
+
+path('category_detail/', views.CategoryDetailView.as_view(), name='category-detail'),
+
+
+
+<!-- Item Entries Column -->
+    <div class="row">
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for item in items %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            {{ item.name }}
+                            {{ item.quantity }}
+                            {{ item.category }}
+                            {{ item.notes }}
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:5 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>

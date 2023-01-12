@@ -1,0 +1,9 @@
+<h1 class="head">Items Categories</h1>
+{% for cat in categories %}
+<div> 
+    <a href="{% url 'category-detail' cat.slug %}">
+        {{ cat.category }}
+    </a>
+</div>
+{% endfor %}
+</div>

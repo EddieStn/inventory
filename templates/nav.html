@@ -5,28 +5,40 @@
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Select a category
+            </button>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                {% for category in category %}
+                <li><a class="dropdown-item" href="#">{{ category.name }}</a></li>
+                {% endfor %}
+                <button type="button" class="btn btn-outline-success"><a class="dropdown-item" href="/add_category">Add a new category</a></button>
+            </ul>
+        </div>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'items' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'folder' %}">Folders</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'category' %}">Categories</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'account_logout' %}" style="color: rgb(173, 16, 16);">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    <a class="nav-link" href="{% url 'account_signup' %}" style="color: rgb(23, 208, 221);">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'account_login' %}" style="color: rgb(59, 233, 24);">Sign in</a>
                 </li>
                 {% endif %}
             </ul>
-            <span class="navbar-text text-muted">Keep track of your things</span>
         </div>
     </div>
 </nav>

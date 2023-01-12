@@ -1,14 +1,14 @@
 from django import forms
-from .models import Item, Folder
+from .models import Item, Category
 
 
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'quantity', 'folder']
+        fields = ['name', 'quantity', 'category', 'notes']
 
 
-class FolderForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
-        model = Folder
+        model = Category
         fields = ['name']
