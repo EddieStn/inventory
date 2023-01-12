@@ -14,7 +14,7 @@
                         <div class="card-body">
                             {{ category.name }}
                             <a class="btn btn-info btn-sm mr-2"
-                                href="#">Edit</a>
+                                href="{% url 'category-edit' category.id %}">Edit</a>
                             <a class="btn btn-danger btn-sm ml-2"
                                 href="{% url 'category-delete' category.id %}">Delete</a>
                         </div>

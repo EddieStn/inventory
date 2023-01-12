@@ -49,6 +49,21 @@ def item_delete(request, pk):
     return render(request, 'item_delete.html')
 
 
+def item_edit(request, pk):
+    item = Item.objects.get(id=pk)
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('items')
+    else:
+        form = ItemForm(instance=item)
+    context = {
+        'form': form,
+    }
+    return render(request, 'item_edit.html', context)
+
+
 @login_required
 def add_category(request):
     if request.method == 'POST':
@@ -69,3 +84,18 @@ def category_delete(request, pk):
         category.delete()
         return redirect('category')
     return render(request, 'category_delete.html')
+
+
+def category_edit(request, pk):
+    category = Category.objects.get(id=pk)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category')
+    else:
+        form = CategoryForm(instance=category)
+    context = {
+        'form': form,
+    }
+    return render(request, 'category_edit.html', context)
