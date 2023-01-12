@@ -63,3 +63,9 @@ def add_category(request):
     return render(request, 'add_category.html', context)
 
 
+def category_delete(request, pk):
+    category = Category.objects.get(id=pk)
+    if request.method == 'POST':
+        category.delete()
+        return redirect('category')
+    return render(request, 'category_delete.html')
