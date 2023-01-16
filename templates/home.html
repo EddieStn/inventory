@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Item Page {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 bg-orange min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0  align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link align-middle px-0">
+                            <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fa-solid fa-layer-group"></i> <span class="ms-1 d-none d-sm-inline">Categories</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li>
+                                <table class="table table-bordered bg-white table-striped">
+                                    <thead class="thead-dark sticky-top bg-dark text-white">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in category %}
+                                        <tr>
+                                            <td>
+                                                <a class="dropdown-item d-inline" href="#">{{ category.name }}</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-info btn-sm mr-2"
+                                                href="{% url 'category-edit' category.id %}">Edit</a>
+                                                <a class="btn btn-danger btn-sm ml-2"
+                                                href="{% url 'category-delete' category.id %}">Delete</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </li>
+                            <li class="dropdown-item" href="#">
+                                <h5>Add new category</h5>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ add_category|crispy }}
+                                    <div>
+                                        <p>
+                                            <button type="submit">Add Category</button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fa-solid fa-square-plus"></i> <span class="ms-1 d-none d-sm-inline">Add Items</span></a>
+                        <div class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ add_item|crispy }}
+                                <div>
+                                    <p>
+                                        <button type="submit">Add Item</button>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col py-3">
+            <div class="col-md-6 offset-md-3">
+                <div class="offset-md-4 col-lg-4 my-auto py-1 py-lg-0">
+                    <form method="GET" action="{% url 'items' %}">
+                        <div class="input-group m-3 w-100">
+                            <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search for items">
+                            <div class="input-group-append">
+                                <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tbodyDiv">
+                    <table class="table table-bordered bg-white table-striped">
+                        <thead class="thead-dark sticky-top bg-dark text-white">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Notes</th>
+                                <th scope="col">Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.category }}</td>
+                                <td>{{ item.notes }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm mr-2"
+                                        href="{% url 'item-edit' item.id %}">Edit</a>
+                                    <a class="btn btn-danger btn-sm ml-2"
+                                        href="{% url 'item-delete' item.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".dropdown-menu li").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+
+{% endblock %}

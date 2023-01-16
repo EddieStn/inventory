@@ -1,30 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'items' %}">Inventory <strong>{{ user.username }}</strong></a>
+        <a class="navbar-brand" href="{% url 'home' %}">Inventory <strong>{{ user.username }}</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Select a category
-            </button>
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <input class="form-control" id="myInput" type="text" placeholder="Search..">
-                {% for category in category %}
-                <li><a class="dropdown-item" href="#">{{ category.name }}</a></li>
-                {% endfor %}
-                <button type="button" class="btn btn-outline-success"><a class="dropdown-item" href="/add_category">Add a new category</a></button>
-            </ul>
-        </div>
+        
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'items' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'category' %}">Categories</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
