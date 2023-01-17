@@ -1,10 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
 
 .thin {
     font-weight: 300;
 }
 
-.bg-purple {
-    background-color: #7791c9;
+.bg-nav {
+    background-color: #c9c9c9;
 }
 
 .bg-menu {
@@ -44,7 +47,7 @@
 }
 
 .link {
-    color: #23BBBB;
+    color: black;
     text-decoration: none;
 }
 
@@ -55,11 +58,48 @@
 }
 
 .tbodyDiv{
-    max-height: clamp(5em,50vh,60vh);
+    max-height: clamp(5em,40vh,50vh);
     overflow: auto;
+    width: 100%;
 }
 
 .catDivs {
     line-height: 2em;
     padding: .5em;
+    padding-right: auto;
+    max-width: auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.itemDivs {
+    border-radius: 15%;
+    border: 2px double rgb(212, 212, 212);
+    margin: 1em;
+    width: 15em;
+    min-height: 15em;
+
+    max-height: fit-content;
+
+}
+
+.searchBar {
+    max-width: 300px;
+}
+
+.width {
+    max-width: auto;
+}
+
+hr {
+    margin: .5em;
+}
+
+.item-name {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    text-decoration: underline;
+}
+
+.item-p {
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
 }
