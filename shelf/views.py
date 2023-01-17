@@ -22,10 +22,12 @@ def index(request):
             add_item = ItemForm(request.POST)
             if add_item.is_valid():
                 add_item.save()
+                return redirect('home')
         if 'add_category' in request.POST:
             add_category = CategoryForm(request.POST)
             if add_category.is_valid():
                 add_category.save()
+                return redirect('home')
 
     if request.GET:
         if 'category' in request.GET:

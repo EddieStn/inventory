@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block title %} Item Page {% endblock %}
+{% block title %} Home Page {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 bg-orange min-vh-100">
-                <a href="{% url 'home' %}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0  align-items-sm-start" id="menu">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 bg-menu min-vh-100">
+                <span class="fs-5 d-none d-sm-inline"><i class="fa-solid fa-bars"></i> Menu</span>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="{% url 'home' %}" class="nav-link align-middle px-0">
                             <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
@@ -19,33 +17,24 @@
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fa-solid fa-layer-group"></i> <span class="ms-1 d-none d-sm-inline">Categories</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li>
-                                <table class="table table-bordered bg-white table-striped">
-                                    <thead class="thead-dark sticky-top bg-dark text-white">
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Update</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for category in category %}
-                                        <tr>
-                                            <td>
-                                                <a class="dropdown-item d-inline" href="#">{{ category.name }}</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-info btn-sm mr-2"
-                                                href="{% url 'category-edit' category.id %}">Edit</a>
-                                                <a class="btn btn-danger btn-sm ml-2"
-                                                href="{% url 'category-delete' category.id %}">Delete</a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="tbodyDiv">
+                                {% for category in category %}
+                                <div class="catDivs bg-submenu">
+                                    
+                                        
+                                    <a class="dropdown-item d-inline" href="#">{{ category.name }}</a>
+                                
+                                    <a class="btn btn-danger btn-sm float-end"
+                                    href="{% url 'category-delete' category.id %}">Delete</a>
+                                    <a class="btn btn-info btn-sm float-end"
+                                    href="{% url 'category-edit' category.id %}">Edit</a>
+                                </div>
+                                <hr>
+                                {% endfor %}
                             </li>
-                            <li class="dropdown-item" href="#">
+                            
+                            <li class="dropdown-item bg-submenu mt-3" href="#">
                                 <h5>Add new category</h5>
                                 <form method="POST">
                                     {% csrf_token %}
@@ -62,19 +51,21 @@
                     </li>
                     
                     <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fa-solid fa-square-plus"></i> <span class="ms-1 d-none d-sm-inline">Add Items</span></a>
-                        <div class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <form method="POST">
-                                {% csrf_token %}
-                                {{ add_item|crispy }}
-                                <div>
-                                    <p>
-                                        <button type="submit">Add Item</button>
-                                    </p>
+                            <div >
+                                <div class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                    <form method="POST" class="bg-submenu p-2">
+                                        {% csrf_token %}
+                                        {{ add_item|crispy }}
+                                        <div>
+                                            <p>
+                                                <button type="submit">Add Item</button>
+                                            </p>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
                     </li>
                 </ul>
             </div>

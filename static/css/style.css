@@ -7,8 +7,12 @@
     background-color: #7791c9;
 }
 
-.bg-orange {
-    background-color: #eb9d37;
+.bg-menu {
+    background-color: rgb(212, 212, 212);
+}
+
+.bg-submenu {
+    background-color: rgb(230, 230, 230);
 }
 
 .light-bg {
@@ -51,6 +55,11 @@
 }
 
 .tbodyDiv{
-    max-height: clamp(5em,70vh,60vh);
+    max-height: clamp(5em,50vh,60vh);
     overflow: auto;
+}
+
+.catDivs {
+    line-height: 2em;
+    padding: .5em;
 }
