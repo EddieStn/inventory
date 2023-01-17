@@ -8,7 +8,7 @@ from .forms import ItemForm, CategoryForm
 
 
 @login_required
-def home(request):
+def index(request):
 
     items = Item.objects.all()
     category = Category.objects.all()
@@ -52,7 +52,7 @@ def home(request):
         'add_item': add_item,
         'add_category': add_category,
     }
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 
 @login_required
