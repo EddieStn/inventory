@@ -10,30 +10,34 @@ from .forms import ItemForm, CategoryForm
 @login_required
 def index(request):
 
+    categories = Category.objects.filter(user=request.user)
     items = Item.objects.all()
-    category = Category.objects.all()
     add_item = ItemForm()
     add_category = CategoryForm()
     query = None
-    categories = None
 
     if request.method == 'POST':
         if 'add_item' in request.POST:
             add_item = ItemForm(request.POST)
             if add_item.is_valid():
+                form = add_item.save(commit=False)
+                form.category = get_object_or_404(
+                    Category, name=request.POST.get('category'),
+                    user=request.user)
                 add_item.save()
                 return redirect('home')
-        if 'add_category' in request.POST:
+        else:
             add_category = CategoryForm(request.POST)
             if add_category.is_valid():
+                category_form = add_category.save(commit=False)
+                category_form.user = request.user
                 add_category.save()
+                name = add_category.cleaned_data.get('name')
+                # if instance.name == name:
+                #     messages.error(request, f'{name} already exists')
+                # else:
+                messages.success(request, f'{name} has been added')
                 return redirect('home')
-
-    if request.GET:
-        if 'category' in request.GET:
-            categories = request.GET['category']
-            items = items.filter(category__name__in=category)
-            categories = Category.objects.filter(name__in=category)
 
     if request.GET:
         if 'q' in request.GET:
@@ -42,17 +46,19 @@ def index(request):
                 messages.error(
                     request, "You didn't enter any search criteria!")
                 return redirect(reverse('home'))
-
             queries = Q(name__icontains=query) | Q(notes__icontains=query)
             items = items.filter(queries)
+        if 'category' in request.GET:
+            category = get_object_or_404(
+                Category, name=request.GET.get('category'), user=request.user)
+            items = Item.objects.filter(category=category)
 
     context = {
         'items': items,
         'search_term': query,
-        'current_categories': categories,
-        'category': category,
         'add_item': add_item,
         'add_category': add_category,
+        'categories': categories
     }
     return render(request, 'index.html', context)
 

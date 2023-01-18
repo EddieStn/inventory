@@ -1,88 +1,48 @@
+@login_required
+def index(request):
 
+    items = Item.objects.all()
+    category = Category.objects.all()
+    add_item = ItemForm()
+    add_category = CategoryForm()
+    query = None
+    categories = None
 
+    if request.method == 'POST':
+        if 'add_item' in request.POST:
+            add_item = ItemForm(request.POST)
+            if add_item.is_valid():
+                add_item.save()
+                return redirect('home')
+        if 'add_category' in request.POST:
+            add_category = CategoryForm(request.POST)
+            if add_category.is_valid():
+                add_category.save()
+                return redirect('home')
 
+    if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category']
+            items = items.filter(category__name__in=category)
+            categories = Category.objects.filter(name__in=category)
 
-path('category_detail/', views.CategoryDetailView.as_view(), name='category-detail'),
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(
+                    request, "You didn't enter any search criteria!")
+                return redirect(reverse('home'))
 
+            queries = Q(name__icontains=query) | Q(notes__icontains=query)
+            items = items.filter(queries)
 
-
-<!-- Item Entries Column -->
-    <div class="row">
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                {% for item in items %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            {{ item.name }}
-                            {{ item.quantity }}
-                            {{ item.category }}
-                            {{ item.notes }}
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:5 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-
-
-    <table class="table table-bordered bg-white table-striped">
-                                    <thead class="thead-dark sticky-top bg-dark text-white">
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Update</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for category in category %}
-                                        <tr>
-                                            <td>
-                                                <a class="dropdown-item d-inline" href="#">{{ category.name }}</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-info btn-sm mr-2"
-                                                href="{% url 'category-edit' category.id %}">Edit</a>
-                                                <a class="btn btn-danger btn-sm ml-2"
-                                                href="{% url 'category-delete' category.id %}">Delete</a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-
-
-                <div class="tbodyDiv">
-                    <table class="table table-bordered bg-white table-striped">
-                        <thead class="thead-dark sticky-top bg-dark text-white">
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Notes</th>
-                                <th scope="col">Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in items %}
-                            <tr>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.quantity }}</td>
-                                <td>{{ item.category }}</td>
-                                <td>{{ item.notes }}</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm mr-2"
-                                        href="{% url 'item-edit' item.id %}">Edit</a>
-                                    <a class="btn btn-danger btn-sm ml-2"
-                                        href="{% url 'item-delete' item.id %}">Delete</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+    context = {
+        'items': items,
+        'search_term': query,
+        'current_categories': categories,
+        'category': category,
+        'add_item': add_item,
+        'add_category': add_category,
+    }
+    return render(request, 'index.html', context)

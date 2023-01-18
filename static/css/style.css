@@ -27,7 +27,7 @@ html {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #dddddd;
 }
 
 .card {
@@ -57,42 +57,34 @@ html {
     text-decoration: underline;
 }
 
-.tbodyDiv{
+.catParentDiv{
     max-height: clamp(5em,40vh,50vh);
-    overflow: auto;
-    width: 100%;
+    overflow: hidden;
+    width: 18em;
 }
 
 .catDivs {
     line-height: 2em;
     padding: .5em;
-    padding-right: auto;
-    max-width: auto;
-    overflow: hidden;
-    width: 100%;
 }
 
+.itemForm {
+    width: 18em;
+}
 .itemDivs {
-    border-radius: 15%;
-    border: 2px double rgb(212, 212, 212);
+    border-radius: 10%;
     margin: 1em;
     width: 15em;
     min-height: 15em;
-
     max-height: fit-content;
-
 }
 
 .searchBar {
     max-width: 300px;
 }
 
-.width {
-    max-width: auto;
-}
-
 hr {
-    margin: .5em;
+    margin: .3em;
 }
 
 .item-name {
@@ -101,5 +93,5 @@ hr {
 }
 
 .item-p {
-    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
 }
