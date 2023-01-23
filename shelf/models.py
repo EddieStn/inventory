@@ -6,7 +6,7 @@ class Category(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE,
                              related_name='category', null=True)
     name = models.CharField(max_length=100, null=False, blank=False)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(auto_now=True)
 

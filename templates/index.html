@@ -105,7 +105,8 @@
             
             <!-- Welcome page -->
 
-            {% if items.user == 0 %}
+            <h1> items length: {{ items|length }} </h1>
+            {% if items|length == 0 %}
             <div class="col-12">
                 <h1 class="d-flex justify-content-center">Welcome to your Inventory</h1>
                 <h2 class="d-flex justify-content-center">This Website is designed to help you keep track of all of your items, wherever they are.</h2>

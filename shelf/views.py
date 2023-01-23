@@ -11,7 +11,7 @@ from .forms import ItemForm, CategoryForm
 def index(request):
 
     categories = Category.objects.filter(user=request.user)
-    items = Item.objects.all()
+    items = Item.objects.filter(user=request.user)
     add_item = ItemForm()
     add_category = CategoryForm(user=request.user)
     query = None
@@ -103,11 +103,13 @@ def category_delete(request, pk):
 def category_edit(request, pk):
     category = Category.objects.get(id=pk)
     if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=category)
+        form = CategoryForm(user=request.user, data=request.POST, instance=category)
         if form.is_valid():
             form.save()
             messages.info(request, f'{category.name} has been updated!')
             return redirect('home')
+        else:
+            print('form invalid')
     else:
         form = CategoryForm(instance=category, user=request.user)
 
