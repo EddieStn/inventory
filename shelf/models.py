@@ -23,6 +23,8 @@ class Category(models.Model):
 
 
 class Item(models.Model):
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE,
+                             related_name='item', null=True)
     name = models.CharField(max_length=100, null=False, blank=False)
     notes = models.TextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=0)

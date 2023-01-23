@@ -13,7 +13,7 @@ def index(request):
     categories = Category.objects.filter(user=request.user)
     items = Item.objects.all()
     add_item = ItemForm()
-    add_category = CategoryForm()
+    add_category = CategoryForm(user=request.user)
     query = None
 
     if request.method == 'POST':
@@ -25,17 +25,16 @@ def index(request):
                     Category, name=request.POST.get('category'),
                     user=request.user)
                 add_item.save()
+                name = add_item.cleaned_data.get('name')
+                messages.success(request, f'{name} has been added')
                 return redirect('home')
         else:
-            add_category = CategoryForm(request.POST)
+            add_category = CategoryForm(user=request.user, data=request.POST)
             if add_category.is_valid():
                 category_form = add_category.save(commit=False)
                 category_form.user = request.user
-                add_category.save()
+                category_form.save()
                 name = add_category.cleaned_data.get('name')
-                # if instance.name == name:
-                #     messages.error(request, f'{name} already exists')
-                # else:
                 messages.success(request, f'{name} has been added')
                 return redirect('home')
 
@@ -68,6 +67,7 @@ def item_delete(request, pk):
     item = Item.objects.get(id=pk)
     if request.method == 'POST':
         item.delete()
+        messages.error(request, f'{item.name} has been deleted!')
         return redirect('home')
     return render(request, 'item_delete.html')
 
@@ -79,6 +79,7 @@ def item_edit(request, pk):
         form = ItemForm(request.POST, instance=item)
         if form.is_valid():
             form.save()
+            messages.info(request, f'{item.name} has been updated!')
             return redirect('home')
     else:
         form = ItemForm(instance=item)
@@ -93,6 +94,7 @@ def category_delete(request, pk):
     category = Category.objects.get(id=pk)
     if request.method == 'POST':
         category.delete()
+        messages.error(request, f'{category.name} has been deleted!')
         return redirect('home')
     return render(request, 'category_delete.html')
 
@@ -104,9 +106,11 @@ def category_edit(request, pk):
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
+            messages.info(request, f'{category.name} has been updated!')
             return redirect('home')
     else:
-        form = CategoryForm(instance=category)
+        form = CategoryForm(instance=category, user=request.user)
+
     context = {
         'form': form,
     }
