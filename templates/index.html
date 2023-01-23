@@ -139,7 +139,7 @@
                 <div class="col">
                     <div class="row">
                         {% for item in items %}
-                        {% if item.category.user == request.user %}
+                        {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
                                 <h2 class="d-flex justify-content-center item-name">{{item.name}}</h2>
                                 <h6 class="d-flex justify-content-center item-p">Qty: {{item.quantity}}</h6>

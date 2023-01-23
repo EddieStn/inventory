@@ -5,7 +5,7 @@ admin.site.site_header = 'Inventory'
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('quantity', 'name', 'category', 'notes', )
+    list_display = ('user', 'quantity', 'name', 'category', 'notes', )
     list_filter = ('category', 'created_on')
 
 

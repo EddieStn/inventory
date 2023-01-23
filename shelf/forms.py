@@ -16,6 +16,10 @@ class ItemForm(forms.ModelForm):
                 }),
         }
 
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(ItemForm, self).__init__(*args, **kwargs)
+
 
 class CategoryForm(forms.ModelForm):
     add_category = forms.BooleanField(widget=forms.HiddenInput, initial=True)
