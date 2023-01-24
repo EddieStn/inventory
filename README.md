@@ -1,3 +1,26 @@
+# Inventory
+## Inventory is designed to help you keep track of all your items, wherever they are.
+## By creating your own categories, you have the freedom of naming them as you wish.
+### Open the live webpage through this [link](https://inventory-es.herokuapp.com/).
+
+# Features
+
+
+# Technology used
+* HTML
+* CSS
+* Javascript
+* Python
+
+# Frameworks and libraries used
+* Django
+* Bootstrap 5
+* ElephantSQL
+* Cloudinary
+
+## Testing
+
+
 
 # User Stories
 
@@ -80,6 +103,9 @@
                             return redirect(reverse('home'))
                         queries = Q(name__icontains=query) | Q(notes__icontains=query)
                         items = items.filter(queries)
+                        if not items:
+                            messages.error(request, "You don`t have that item")
+                            return redirect('home')
                     if 'category' in request.GET:
                         category = get_object_or_404(
                             Category, name=request.GET.get('category'), user=request.user)
@@ -299,11 +325,29 @@ class Meta:
     ordering = ['-timestamp']
 ```
 
-## [#6](https://github.com/EddieStn/inventory/issues/6)
+## [#6 Filter items](https://github.com/EddieStn/inventory/issues/6)
 ### As a Site User I want to be able to filter and search for items so that I can find them quicker
 * The filtering and searching are handled by index view and template
     * Filtering items by category is done by clicking on a category name, this will redirect to the specific category url
-        * Filtering & Searching View ( check user story #2 view )
+        * Filtering & Searching View ( check user story #2 for the entire view )
+            ```
+            if request.GET:
+                if 'q' in request.GET:
+                    query = request.GET['q']
+                    if not query:
+                        messages.error(
+                            request, "You didn't enter any search criteria!")
+                        return redirect('home')
+                    queries = Q(name__icontains=query) | Q(notes__icontains=query)
+                    items = items.filter(queries)
+                    if not items:
+                        messages.error(request, "You don`t have that item")
+                        return redirect('home')
+                if 'category' in request.GET:
+                    category = get_object_or_404(
+                        Category, name=request.GET.get('category'), user=request.user)
+                    items = Item.objects.filter(category=category)
+            ```
         * Filtering Template ( in the category section )
             ```
             <a class="link px-2 catName" href="{% url 'home' %}?category={{category.name}}">{{ category.name }}</a>

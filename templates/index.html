@@ -14,7 +14,7 @@
                     <ul class="nav nav-pills flex-column h-100 mb-sm-auto mb-0 align-items-sm-start" id="menu">
                         <li class="nav-item"><i class="fa-solid fa-bars"></i> <span class="fs-5 d-none d-sm-inline">Menu</span></li>
                         <li class="nav-item">
-                            <a href="{% url 'home' %}" class="nav-link align-middle px-0">
+                            <a href="{% url 'home' %}" class="nav-link align-middle px-0 text-red link">
                                 <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                             </a>
                         </li>
@@ -22,14 +22,14 @@
                         <!-- Categories Entry -->
 
                         <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link">
                                 <i class="fa-solid fa-layer-group"></i> <span class="ms-1 d-none d-sm-inline">Categories</span> </a>
                             <div>
-                                <div class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <div class="collapse nav flex-column ms-1 category" id="submenu1" data-bs-parent="#menu">
                                     <h3 class="d-flex justify-content-center">Categories</h3>
                                     {% if not categories %}
-                                    <h4>You have not created a category yet.</h4>
-                                    <h5>Create one now by using the form below</h5>
+                                    <h4 class="welcome">You have not created a category yet.</h4>
+                                    <h5 class="welcome">Create one now by using the form below</h5>
 
                                     <div class="bg-submenu mt-3 p-2">
                                         <form method="POST">
@@ -46,7 +46,7 @@
                                         <div class="catParentDiv">
                                             {% for category in categories %}
                                             <div class="catDivs bg-submenu d-flex justify-content-end">
-                                                <a class="link px-2 catName" href="{% url 'home' %}?category={{category.name}}">{{ category.name }}</a>
+                                                <a class=" px-2 catName" href="{% url 'home' %}?category={{category.name}}">{{ category.name }}</a>
                                                 <a class="btn btn-info btn-sm me-0 d-flex align-items-center"
                                                 href="{% url 'category-edit' category.id %}">Edit</a>
                                                 <a class="btn btn-danger btn-sm me-0 d-flex align-items-center"
@@ -74,7 +74,7 @@
                         <!-- Item Form -->
 
                         <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link">
                                 <i class="fa-solid fa-square-plus"></i> <span class="ms-1 d-none d-sm-inline">Add Items</span></a>
                             
                             <div class="collapse nav flex-column ms-1 itemForm" id="submenu2" data-bs-parent="#menu">
@@ -107,12 +107,9 @@
 
             {% if items|length == 0 %}
             <div class="col-12">
-                <h1 class="d-flex justify-content-center">Welcome to your Inventory</h1>
-                <h2 class="d-flex justify-content-center">You have {{ items|length }} item(s) here!</h2>
-                <h2>This Website is designed to help you keep track of all of your items, wherever they are.</h2>
-                <h2>To get started, create a category, eg. "Cupboard".</h2>
-                <h3>There are currently no items in your inventory</h3>
-                <h4>Click on the sidebar buttons to create a category (<span><i class="fa-solid fa-layer-group"></i></span>) and then add items (<span><i class="fa-solid fa-square-plus"></i></span>) to it.</h4>
+                <h2 class="mt-3 welcome">This website is designed to help you keep track of all of your items, wherever they are.</h2>
+                <h3 class="welcome">Click on the sidebar buttons to create a category (<span><i class="fa-solid fa-layer-group"></i></span>) and then add items (<span><i class="fa-solid fa-square-plus"></i></span>) to it.</h3>
+                <h3 class="welcome">You have {{ items|length }} items here!</h3>
             {% else %}
                 <div>
                     <form class="searchBar" method="GET" action="{% url 'home' %}">
@@ -138,14 +135,14 @@
 
                 <div class="col">
                     <div class="row">
-                        <h2> You have {{ items|length }} item(s) here! </h2>
+                        <h2 class="text-red m-3"> You have {{ items|length }} items here! </h2>
                         {% for item in items %}
                         {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
-                                <h2 class="d-flex justify-content-center item-name">{{item.name}}</h2>
-                                <h6 class="d-flex justify-content-center item-p">Qty: {{item.quantity}}</h6>
-                                <h6 class="d-flex justify-content-center item-p"><i class="fa-regular fa-at"></i>: {{item.category}}</h6>
-                                <h6 class="d-flex justify-content-center item-p"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</h6>
+                                <h2 class="d-flex justify-content-center text-red">{{item.name}}</h2>
+                                <h6 class="d-flex justify-content-center">Qty: {{item.quantity}}</h6>
+                                <h6 class="d-flex justify-content-center"><i class="fa-regular fa-at"></i>: {{item.category}}</h6>
+                                <h6 class="d-flex justify-content-center"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</h6>
                                 <p class="d-flex justify-content-center">
                                     <a class="btn btn-info btn-sm"
                                     href="{% url 'item-edit' item.id %}">Edit</a>

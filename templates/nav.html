@@ -1,6 +1,7 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-light light-bg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Inventory <strong>{{ user.username }}</strong></a>
+        <a class="navbar-brand text-red link logo" href="{% url 'home' %}">Inventory <strong>{{ user.username }}</strong></a>
         {% if messages %}
         {% for message in messages %}
         <div class="msg-container">
@@ -14,14 +15,14 @@
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_logout' %}" style="color: rgb(173, 16, 16);">Logout</a>
+                    <a class="text-red link nav-link" href="{% url 'account_logout' %}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_signup' %}" style="color: rgb(23, 208, 221);">Sign up</a>
+                    <a class="nav-link btn-signup mx-1" href="{% url 'account_signup' %}">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_login' %}" style="color: rgb(59, 233, 24);">Sign in</a>
+                    <a class="nav-link btn-signup" href="{% url 'account_login' %}">Sign in</a>
                 </li>
                 {% endif %}
             </ul>
