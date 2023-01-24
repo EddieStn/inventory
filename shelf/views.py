@@ -20,7 +20,9 @@ def index(request):
         if 'add_item' in request.POST:
             add_item = ItemForm(request.user, request.POST)
             if add_item.is_valid():
-                add_item.instance.category = get_object_or_404(Category, name=request.POST.get('category'), user=request.user)
+                add_item.instance.category = get_object_or_404(
+                    Category, name=request.POST.get('category'),
+                    user=request.user)
                 add_item.instance.user = request.user
                 add_item.save()
                 name = add_item.cleaned_data.get('name')
@@ -76,13 +78,13 @@ def item_delete(request, pk):
 def item_edit(request, pk):
     item = Item.objects.get(id=pk)
     if request.method == 'POST':
-        form = ItemForm(request.POST, instance=item)
+        form = ItemForm(user=request.user, data=request.POST, instance=item)
         if form.is_valid():
             form.save()
             messages.info(request, f'{item.name} has been updated!')
             return redirect('home')
     else:
-        form = ItemForm(instance=item)
+        form = ItemForm(user=request.user, instance=item)
     context = {
         'form': form,
     }
@@ -103,7 +105,8 @@ def category_delete(request, pk):
 def category_edit(request, pk):
     category = Category.objects.get(id=pk)
     if request.method == 'POST':
-        form = CategoryForm(user=request.user, data=request.POST, instance=category)
+        form = CategoryForm(user=request.user,
+                            data=request.POST, instance=category)
         if form.is_valid():
             form.save()
             messages.info(request, f'{category.name} has been updated!')

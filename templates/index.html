@@ -135,7 +135,7 @@
 
                 <div class="col">
                     <div class="row">
-                        <h2 class="text-red m-3"> You have {{ items|length }} items here! </h2>
+                        <h4 class="text-red m-3"> You have {{ items|length }} items here! </h4>
                         {% for item in items %}
                         {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
