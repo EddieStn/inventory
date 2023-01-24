@@ -105,14 +105,14 @@
             
             <!-- Welcome page -->
 
-            <h1> items length: {{ items|length }} </h1>
             {% if items|length == 0 %}
             <div class="col-12">
                 <h1 class="d-flex justify-content-center">Welcome to your Inventory</h1>
-                <h2 class="d-flex justify-content-center">This Website is designed to help you keep track of all of your items, wherever they are.</h2>
-                <h2 class="d-flex justify-content-center">To get started, create a category, eg. "Cupboard".</h2>
-                <h3 class="d-flex justify-content-center">There are currently no items in your inventory</h3>
-                <h4 class="d-flex justify-content-center">Click on the sidebar buttons to create a category <i class="fa-solid fa-layer-group"></i> and then add items <i class="fa-solid fa-square-plus"></i> to it.</h4>
+                <h2 class="d-flex justify-content-center">You have {{ items|length }} item(s) here!</h2>
+                <h2>This Website is designed to help you keep track of all of your items, wherever they are.</h2>
+                <h2>To get started, create a category, eg. "Cupboard".</h2>
+                <h3>There are currently no items in your inventory</h3>
+                <h4>Click on the sidebar buttons to create a category (<span><i class="fa-solid fa-layer-group"></i></span>) and then add items (<span><i class="fa-solid fa-square-plus"></i></span>) to it.</h4>
             {% else %}
                 <div>
                     <form class="searchBar" method="GET" action="{% url 'home' %}">
@@ -138,6 +138,7 @@
 
                 <div class="col">
                     <div class="row">
+                        <h2> You have {{ items|length }} item(s) here! </h2>
                         {% for item in items %}
                         {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
