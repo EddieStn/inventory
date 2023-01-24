@@ -12,17 +12,17 @@
         {% endfor %}
         {% endif %}
         <div>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto list-inline d-inline">
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="text-red link nav-link" href="{% url 'account_logout' %}">Logout</a>
+                <li class="nav-item list-inline-item m-0">
+                    <a class="text-red link nav-link px-2" href="{% url 'account_logout' %}">Logout</a>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link btn-signup mx-1" href="{% url 'account_signup' %}">Sign up</a>
+                <li class="nav-item list-inline-item m-0">
+                    <a class="nav-link btn-signup mx-1 px-2" href="{% url 'account_signup' %}">Sign up</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn-signup" href="{% url 'account_login' %}">Sign in</a>
+                <li class="nav-item list-inline-item m-0">
+                    <a class="nav-link btn-signup px-2" href="{% url 'account_login' %}">Sign in</a>
                 </li>
                 {% endif %}
             </ul>

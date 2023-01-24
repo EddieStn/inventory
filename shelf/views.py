@@ -47,7 +47,7 @@ def index(request):
             queries = Q(name__icontains=query) | Q(notes__icontains=query)
             items = items.filter(queries)
             if not items:
-                messages.error(request, "You don`t have that item")
+                messages.error(request, "You don't have that item")
                 return redirect('home')
         if 'category' in request.GET:
             category = get_object_or_404(
