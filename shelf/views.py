@@ -20,11 +20,8 @@ def index(request):
         if 'add_item' in request.POST:
             add_item = ItemForm(request.user, request.POST)
             if add_item.is_valid():
-                form = add_item.save(commit=False)
-                form.category = get_object_or_404(
-                    Category, name=request.POST.get('category'),
-                    user=request.user)
-                add_item.user = request.user
+                add_item.instance.category = get_object_or_404(Category, name=request.POST.get('category'), user=request.user)
+                add_item.instance.user = request.user
                 add_item.save()
                 name = add_item.cleaned_data.get('name')
                 messages.success(request, f'{name} has been added')
@@ -32,9 +29,8 @@ def index(request):
         else:
             add_category = CategoryForm(user=request.user, data=request.POST)
             if add_category.is_valid():
-                category_form = add_category.save(commit=False)
-                category_form.user = request.user
-                category_form.save()
+                add_category.instance.user = request.user
+                add_category.save()
                 name = add_category.cleaned_data.get('name')
                 messages.success(request, f'{name} has been added')
                 return redirect('home')
