@@ -31,6 +31,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 ALLOWED_HOSTS = ['inventory-es.herokuapp.com', 'localhost']
 
 
