@@ -3,8 +3,114 @@
 ## By creating your own categories, you have the freedom of naming them as you wish.
 ### Open the live webpage through this [link](https://inventory-es.herokuapp.com/).
 
-# Features
+# Table of contents
+* [Design and Build](#design-and-build)
+* [Features](#features)
+* [Technology and framerworks](#technology)
+* [Testing](#testing)
+    * [Lighthouse](#lighthouse)
+    * [Validation](#validation)
+    * [Manual Testing](#manual-tesing)
+    * [Responsiveness](#responsiveness)
+* [Bugs](#bugs)
+* [User stories](#user-stories)
+* [Development and Deployment](#development-and-deployment)
+    * [Local development](#local-development)
+    * [Deployment](#heroku-deployment)
+* [Credits](#credits)
+* [Acknowledgements](#acknowledgements)
 
+# Design and build
+
+
+# Features
+### Given that the website requires a user to be logged in, the first page is the log-in/signup
+* Tip: Remember your credentials, as forgotten password is not yet implemented
+
+<img src="media/images/sign-in.png">
+<img src="media/images/sign-up.png">
+
+### After logging in you'll be greeted by the home page (landing page) where you are given instructions on how to use the website
+
+<img src="media/images/starter-page.png">
+
+## Navbar 
+* Logo `Inventory` < **username** >
+* Sign-in and Sign-up / Logout
+
+<img src="media/images/nav.png">
+<img src="media/images/signup.png">
+
+* Friendly messages to alert you of the actions made
+
+<img src="media/images/alerts.png">
+
+## Sidebar is the place where most of the action takes place.
+
+<img src="media/images/sidebar.png">
+
+* Home button
+    * Redirects the user back to the home page
+* Categories
+    * Collapsable button for `categories` view and add `new category` form
+
+<img src="media/images/categories.png">
+
+* Add Items
+    * Collapsable button for `Add Item` form
+
+<img src="media/images/item-form.png">
+
+
+* Categories entry
+    * Categories are clickable and are used to filter all items created for a specific category
+
+<img src="media/images/category-page.png">
+
+    * When categories become too many, a scrollable bar will help you access the ones further down
+    * The Edit button will allow you to change the category name
+
+<img src="media/images/edit-category.png">
+
+    * The Delete button will delete the category **and** `ALL ITEMS` belonging to it
+
+<img src="media/images/delete-category.png">
+
+* Add new category form
+    * You cannot create categories with the same name or with no name
+
+<img src="media/images/cat-form.png">
+<img src="media/images/cat-form2.png">
+
+
+* Item form
+    * To create a new item you need to give it a name, quantity, category and notes(optional)
+    * Adding a new Item is dependant on a category, you cannot add items without a category
+
+### Item entries
+* Once an item is created, it will be displayed on the main page
+* Items can be edited/updated and/or deleted
+* You can search for items or you can filter them by clicking on a category
+* Once in a specific category, clicking the home button will take you back to all items
+* Item counter tells you how many items you have created
+
+<img src="media/images/items-entry.png">
+
+* Editing an item will pop up the Edit Item page where you can update all the fields
+
+<img src="media/images/edit-item.png">
+
+* Deleting an item will pop up the Delete Item page where you're being asked if you're sure of your actions
+
+<img src="media/images/delete-item.png">
+
+## Features to be implemented in the future
+
+* Profile page
+* Forgot password page
+* Alerts via email/text to remind you when you're running low on items
+* Links to external sources to buy more of a certain item
+* Create an item page and expand so you can upload an image of the item and a link to a seller
 
 # Technology used
 * HTML
@@ -44,139 +150,57 @@
 <img src="media/images/html-validator.png">
 
 * CSS Validation passed with no errors - [result](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2F8000-eddiestn-inventory-h6ai0tvvbaf.ws-eu84.gitpod.io%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+    * Most of my CSS comes from Bootstrap 5
 
 <img src="media/images/css-validator.png">
 
-* JShit check for the javascript I wrote myself passed with no errors, most of my javascript comes from Bootstrap
+* JShit check for javascript passed with no errors.
+    * To make it work properly for ES6, pass this code at the top: `/* jshint esversion: 6 */`
 
 <img src="media/images/jshint.png">
 
-* Pep8online was down during the validation process, nevertheless, with the built-in pep8 validator pycodestyle, there are no errors (except in settings.py).
+* Pep8online was down during the validation process, nevertheless, with the built-in pep8 validator pycodestyle, there are no errors (except for settings.py).
 
 <img src="media/images/pep8.png">
 
+## Manual testing
+### For this project I performed manual tests, and they are as follows
 
-# Development and Deployment
-## Local development
-* Create your Django app. In the terminal write the following in order:
-    1. Install Django and gunicorn: `pip3 install django gunicorn`
-    2. Install database libraries dj_database_url and psycopg2 library: `pip3 install dj_database_url psycopg2`
-    3. Install Cloudinary libraries to manage photos: `pip3 install dj-3-cloudinary-storage`
-    4. Create file for requirements file: `pip freeze --local > requirements.txt`
-    5. Create your project: `django-admin startproject your_project_name .`
-    6. Create your app: `django-admin startapp your_app_name`
-    7. Migrate: `python3 manage.py makemigrations` and `python3 manage.py migrate`
-    8. Run the server to test if the app is installed: `python3 manage.py runserver`
+## Responsiveness
 
-## Heroku deployment
-### The site was deployed via Heroku. The live link can be found here - [Inventory](https://inventory-es.herokuapp.com/)
 
-* To deploy the project through Heroku I followed these steps:
+# Bugs
 
-    * Sign up / Log in to Heroku
-    * From the main Heroku Dashboard page select `New` and then `Create New App`
-    * Give the project a name - in my case inventory-es and select a region, then select create app.
-    * This will create the app within Heroku and bring you to the deploy tab.
-    * For the database, I used ElephantSQL
-        * Navigate to ElephantSQL.com and log-in/sign-up.
-        * Create new instance
-        * Choose a name and the free plan, tags can be left blank
-        * Select a region and click Review and then Create
-        * From the dashboard, select the created instance and copy the URL to the clipboard
-    * To save static and media files, I used Cloudinary
-        * Navigate to cloudinary.com and log-in/sign-up.
-        * From the dashboard - copy the CLOUDINARY_URL to the clipboard
-    * In Heroku navigate to the setting tab and scroll utill you find `Reveal config vars`.
-    * Add to the config vars DATABASE_URL as the KEY and paste the URL from your ElephantSQL as the VALUE
-    * Add to the config vars CLOUDINARY_URL as the KEY and paste the URL as the VALUE
-    * Also add the KEY - DISABLE_COLLECTSTATIC with the Value - 1 to the config vars
-    * This key value pair must be removed prior to final deployment
-    * In the root directory of your repository in github create a new file called `env.py` and write the following code:
-        ```
-        import os
+* Every refresh resubmits the form
+    * fix:
+        *   ```
+            if request.method == 'POST':
+                    if 'add_item' in request.POST:
+                        add_item = ItemForm(request.POST)
+                        if add_item.is_valid():
+                            add_item.save()
+                            return redirect('home') <!-- This line fixed the bug -->
+            ```
 
-        os.environ["DATABASE_URL"]="postgres://url"
-        os.environ["SECRET_KEY"]="your secret key"
-        os.environ["CLOUDINARY_URL"]="cloudinary://url"
-        ```
-    * Add the secret key just created to the Heroku Config Vars. SECRET_KEY as the KEY and the secret key value you created as the VALUE
-    * In settings.py write the following code:
-        ```
-        from pathlib import Path
-        import os
-        import dj_database_url
-        if os.path.isfile('env.py'):
-            import env
-        ```
-    * Replace the secret key that django has in the settings.py with `SECRET_KEY = os.environ.get('SECRET_KEY')`
-    * Comment out the default database and replace it with:
-        ```
-        DATABASES = {
-            'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-        }
-        ```
-    * Make migrations:
-        * python3 manage.py makemigrations
-        * python3 manage.py migrate
-    * In the following order, add the Cloudinary libraries to the Django settings.py section for installed apps:
-        ```
-        'cloudinary_storage'
-        'django.contrib.staticfiles',
-        'cloudinary',
-        ```
-    * Add the following in settings.py to connect Cloudinary to Django:
-        ```
-        STATIC_URL = '/static/'
-        STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-        MEDIA_URL = '/media/'
-        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-        ```
-    * Link the file to the templates directory in Heroku TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-    * Change the templates directory to TEMPLATES_DIR - 'DIRS': [TEMPLATES_DIR]
-    * For the `ALLOWED_HOSTS` add your heroku url and your localhost:
-        ```
-        ALLOWED_HOSTS = ['inventory-es.herokuapp.com', 'localhost']
-        ```
-    * In your root directory, create three new top folders: media, static and templates
-    * Create a `Procfile` file in the root directory
-    * Within the Procfile add the code - `web: guincorn PROJECT_NAME.wsgi`
-    * In the terminal, add the changed files, commit and push to GitHub
-    * In Heroku, navigate to the deployment tab and deploy the branch manually - watch the build logs for any errors.
-    * Heroku will now build the app for you. Once it has completed the build process you will see a 'Your App Was Successfully Deployed' message and a link to the app to visit the live site.
+* All items created by other users would be saved for the superuser in the database
+    * fix: 
+        *   ```
+            if 'add_item' in request.POST:
+                add_item = ItemForm(request.user, request.POST)
+                if add_item.is_valid():
+                    add_item.instance.category = get_object_or_404(Category, name=request.POST.get('category'), user=request.user)
+                    add_item.instance.user = request.user  <!-- This line fixed the bug -->
+                    add_item.save()
+            ```
 
-## Final Deployment
-
-* Upon completion of development, change in settings.py DEBUG = True to DEBUG = False
-    * To have DEBUG set to true for your local development and false for Heroku:
-        * In env.py add another line `os.environ['DEV'] = 'Yes please!'` ( note that the value you set does not matter )
-        * In settings.py and DEBUG = False to `DEBUG = 'DEV' in os.environ`
-* For this project's use of the Summernote editor to function in Heroku, add the following line to settings.py: `X_FRAME_OPTIONS = "SAMEORIGIN"`
-* In Heroku settings config vars change the DISABLE_COLLECTSTATIC value to 0
-* 'Choose a branch to deploy' should be 'main' and search for your repository
-* To manually deploy click the button 'Deploy Branch'
-* Your app was successfully deployed will be displayed when the app is deployed.
-* The deployed app will appear in the browser after you click "view."
-
-## Forking and Cloning
-
-## Forking a repository
-### A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
-1. On GitHub.com, navigate to https://github.com/EddieStn/inventory.
-2. In the top-right corner of the page, click Fork.
-
-## Cloning your forked repository
-### Right now, you have a fork of the Inventory repository, but you do not have the files in that repository locally on your computer.
-1. On GitHub.com, navigate to your fork of the inventory repository.
-2. Above the list of files, click Code.
-3. Copy the URL for the repository.
-4. Open Git Bash.
-5. Change the current working directory to the location where you want the cloned directory.
-6. Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
-   - git clone https://github.com/YOUR-USERNAME/inventory
-7. Press Enter. Your local clone will be created.
+* Getting Forbidden 403 CSRF verification failed when trying to get website responsiveness from Multi-devices generator websites
+    * The attempts of fixing it:
+        * Add to settings.py `X_FRAME_OPTIONS = 'ALLOW-FROM https://amiresponsive.co.uk/'`
+        * Add `CSRF_TRUSTED_ORIGINS = ['https://amiresponsive.co.uk/']`  `CSRF_COOKIE_SECURE = True`
+        * Added to my views the xframe_options_excempt decorator
+    * All turned unsuccessful
+    * Later I learned that you cannot submit forms from your website inside iframes of other websites(not easily done, anyway), and as my website is login required, I couldn't access it
 
 
 # User Stories
@@ -596,31 +620,128 @@ admin.site.register(Category, CategoryAdmin)
         {% endfor %}
         ```
 
-# Bugs
+# Development and Deployment
+## Local development
+* Create your Django app. In the terminal write the following in order:
+    1. Install Django and gunicorn: `pip3 install django gunicorn`
+    2. Install database libraries dj_database_url and psycopg2 library: `pip3 install dj_database_url psycopg2`
+    3. Install Cloudinary libraries to manage photos: `pip3 install dj-3-cloudinary-storage`
+    4. Create file for requirements file: `pip freeze --local > requirements.txt`
+    5. Create your project: `django-admin startproject your_project_name .`
+    6. Create your app: `django-admin startapp your_app_name`
+    7. Migrate: `python3 manage.py makemigrations` and `python3 manage.py migrate`
+    8. Run the server to test if the app is installed: `python3 manage.py runserver`
 
-* BUG: 
-    * Every refresh resubmits the form
-    * fix:
-        *   ```
-            if request.method == 'POST':
-                    if 'add_item' in request.POST:
-                        add_item = ItemForm(request.POST)
-                        if add_item.is_valid():
-                            add_item.save()
-                            return redirect('home') <!-- This line fixed the bug -->
-            ```
+## Heroku deployment
+### The site was deployed via Heroku. The live link can be found here - [Inventory](https://inventory-es.herokuapp.com/)
 
-* BUG:
-    * All items created by other users would be saved for the superuser in the database
-    * fix: 
-        *   ```
-            if 'add_item' in request.POST:
-                add_item = ItemForm(request.user, request.POST)
-                if add_item.is_valid():
-                    add_item.instance.category = get_object_or_404(Category, name=request.POST.get('category'), user=request.user)
-                    add_item.instance.user = request.user  <!-- This line fixed the bug -->
-                    add_item.save()
-            ```
+* To deploy the project through Heroku I followed these steps:
+
+    * Sign up / Log in to Heroku
+    * From the main Heroku Dashboard page select `New` and then `Create New App`
+    * Give the project a name - in my case inventory-es and select a region, then select create app.
+    * This will create the app within Heroku and bring you to the deploy tab.
+    * For the database, I used ElephantSQL
+        * Navigate to ElephantSQL.com and log-in/sign-up.
+        * Create new instance
+        * Choose a name and the free plan, tags can be left blank
+        * Select a region and click Review and then Create
+        * From the dashboard, select the created instance and copy the URL to the clipboard
+    * To save static and media files, I used Cloudinary
+        * Navigate to cloudinary.com and log-in/sign-up.
+        * From the dashboard - copy the CLOUDINARY_URL to the clipboard
+    * In Heroku navigate to the setting tab and scroll utill you find `Reveal config vars`.
+    * Add to the config vars DATABASE_URL as the KEY and paste the URL from your ElephantSQL as the VALUE
+    * Add to the config vars CLOUDINARY_URL as the KEY and paste the URL as the VALUE
+    * Also add the KEY - DISABLE_COLLECTSTATIC with the Value - 1 to the config vars
+    * This key value pair must be removed prior to final deployment
+    * In the root directory of your repository in github create a new file called `env.py` and write the following code:
+        ```
+        import os
+
+        os.environ["DATABASE_URL"]="postgres://url"
+        os.environ["SECRET_KEY"]="your secret key"
+        os.environ["CLOUDINARY_URL"]="cloudinary://url"
+        ```
+    * Add the secret key just created to the Heroku Config Vars. SECRET_KEY as the KEY and the secret key value you created as the VALUE
+    * In settings.py write the following code:
+        ```
+        from pathlib import Path
+        import os
+        import dj_database_url
+        if os.path.isfile('env.py'):
+            import env
+        ```
+    * Replace the secret key that django has in the settings.py with `SECRET_KEY = os.environ.get('SECRET_KEY')`
+    * Comment out the default database and replace it with:
+        ```
+        DATABASES = {
+            'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
+        ```
+    * Make migrations:
+        * python3 manage.py makemigrations
+        * python3 manage.py migrate
+    * In the following order, add the Cloudinary libraries to the Django settings.py section for installed apps:
+        ```
+        'cloudinary_storage'
+        'django.contrib.staticfiles',
+        'cloudinary',
+        ```
+    * Add the following in settings.py to connect Cloudinary to Django:
+        ```
+        STATIC_URL = '/static/'
+        STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+        STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+        MEDIA_URL = '/media/'
+        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+        ```
+    * Link the file to the templates directory in Heroku TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+    * Change the templates directory to TEMPLATES_DIR - 'DIRS': [TEMPLATES_DIR]
+    * For the `ALLOWED_HOSTS` add your heroku url and your localhost:
+        ```
+        ALLOWED_HOSTS = ['inventory-es.herokuapp.com', 'localhost']
+        ```
+    * In your root directory, create three new top folders: media, static and templates
+    * Create a `Procfile` file in the root directory
+    * Within the Procfile add the code - `web: guincorn PROJECT_NAME.wsgi`
+    * In the terminal, add the changed files, commit and push to GitHub
+    * In Heroku, navigate to the deployment tab and deploy the branch manually - watch the build logs for any errors.
+    * Heroku will now build the app for you. Once it has completed the build process you will see a 'Your App Was Successfully Deployed' message and a link to the app to visit the live site.
+
+## Final Deployment
+
+* Upon completion of development, change in settings.py DEBUG = True to DEBUG = False
+    * To have DEBUG set to true for your local development and false for Heroku:
+        * In env.py add another line `os.environ['DEV'] = 'Yes please!'` ( note that the value you set does not matter )
+        * In settings.py and DEBUG = False to `DEBUG = 'DEV' in os.environ`
+* For this project's use of the Summernote editor to function in Heroku, add the following line to settings.py: `X_FRAME_OPTIONS = "SAMEORIGIN"`
+* In Heroku settings config vars change the DISABLE_COLLECTSTATIC value to 0
+* 'Choose a branch to deploy' should be 'main' and search for your repository
+* To manually deploy click the button 'Deploy Branch'
+* Your app was successfully deployed will be displayed when the app is deployed.
+* The deployed app will appear in the browser after you click "view."
+
+## Forking and Cloning
+
+## Forking a repository
+### A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project.
+1. On GitHub.com, navigate to https://github.com/EddieStn/inventory.
+2. In the top-right corner of the page, click Fork.
+
+## Cloning your forked repository
+### Right now, you have a fork of the Inventory repository, but you do not have the files in that repository locally on your computer.
+1. On GitHub.com, navigate to your fork of the inventory repository.
+2. Above the list of files, click Code.
+3. Copy the URL for the repository.
+4. Open Git Bash.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
+   - git clone https://github.com/YOUR-USERNAME/inventory
+7. Press Enter. Your local clone will be created.
+
 
 # Credits 
 
