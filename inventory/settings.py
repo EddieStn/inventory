@@ -31,10 +31,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-X_FRAME_OPTIONS = "SAMEORIGIN"
+X_FRAME_OPTIONS = 'ALLOW-FROM https://amiresponsive.co.uk/'
 
 ALLOWED_HOSTS = ['inventory-es.herokuapp.com', 'localhost']
-
 
 # Application definition
 
@@ -63,7 +62,7 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/account/login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
