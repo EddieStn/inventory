@@ -41,5 +41,6 @@ class CategoryForm(forms.ModelForm):
             # EXCLUDE CURRENT INSTANCE TO ENABLE EDIT
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise forms.ValidationError('There is a category with the name ' + name)
+            raise forms.ValidationError(
+                'There is a category with the name ' + name)
         return name
