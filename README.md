@@ -14,12 +14,39 @@
 
 # Frameworks and libraries used
 * Django
+* Jquery
 * Bootstrap 5
 * ElephantSQL
 * Cloudinary
 
-## Testing
+# Testing
 
+## Lighthouse
+* Desktop before and aftrer
+
+<img src="static/images/desktop-lighthouse-before.png" height=500 width=450>
+<img src="static/images/lighthouse-desktop-after.png" height=500 width=500>
+
+* Mobile before and after
+
+<img src="static/images/mobile-lighthouse-before.png" height=500 width=450>
+<img src="static/images/lighthouse-mobile-after.png" height=500 width=500>
+
+* I improved the results by adding Meta tags and aria-label to my buttons and links
+* Accessibility is low because it is pointing to some inputs that don't exist, or at least not in my html
+
+<img src="static/images/lighthouse-false.png">
+
+* Best practices is low because there is a RefferenceRrror in the console
+    * To fix the error, I need to add jquery cdn in my html, but of I do that, I get performance low as I don`t use Jquery
+
+<img src="static/images/lighthouse-false2.png">
+
+
+# Deployment
+## Local deployment
+## Heroku deployment
+## Clone
 
 
 # User Stories

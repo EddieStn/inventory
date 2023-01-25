@@ -14,7 +14,7 @@
                     <ul class="nav nav-pills flex-column h-100 mb-sm-auto mb-0 align-items-sm-start" id="menu">
                         <li class="nav-item"><i class="fa-solid fa-bars"></i> <span class="fs-5 d-none d-sm-inline">Menu</span></li>
                         <li class="nav-item">
-                            <a href="{% url 'home' %}" class="nav-link align-middle px-0 text-red link">
+                            <a href="{% url 'home' %}" class="nav-link align-middle px-0 text-red link" aria-label="home page">
                                 <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                             </a>
                         </li>
@@ -22,7 +22,7 @@
                         <!-- Categories Entry -->
 
                         <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link">
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link" aria-label="category entries and new category form">
                                 <i class="fa-solid fa-layer-group"></i> <span class="ms-1 d-none d-sm-inline">Categories</span> </a>
                             <div>
                                 <div class="collapse nav flex-column ms-1 category" id="submenu1" data-bs-parent="#menu">
@@ -74,7 +74,7 @@
                         <!-- Item Form -->
 
                         <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-red link" aria-label="new item form">
                                 <i class="fa-solid fa-square-plus"></i> <span class="ms-1 d-none d-sm-inline">Add Items</span></a>
                             
                             <div class="collapse nav flex-column ms-1 itemForm" id="submenu2" data-bs-parent="#menu">
@@ -116,12 +116,12 @@
                         <div class="input-group m-3 light-bg">
                             <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search for items">
                             <div class="input-group-append btn-group">
-                                <button class="form-control btn btn-black border border-black rounded-0 " type="submit">
+                                <button class="form-control btn btn-black border border-black rounded-0" aria-label="search for item" type="submit">
                                     <span class="icon">
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </button>
-                                <button class="form-control btn btn-black border border-black rounded-0 " type="submit">
+                                <button class="form-control btn btn-black border border-black rounded-0" aria-label="back to home" type="submit">
                                     <span class="icon">
                                         <i class="fa-solid fa-backward"></i>
                                     </span>
@@ -140,14 +140,14 @@
                         {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
                                 <h2 class="d-flex justify-content-center text-red">{{item.name}}</h2>
-                                <h6 class="d-flex justify-content-center">Qty: {{item.quantity}}</h6>
-                                <h6 class="d-flex justify-content-center"><i class="fa-regular fa-at"></i>: {{item.category}}</h6>
-                                <h6 class="d-flex justify-content-center"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</h6>
-                                <p class="d-flex justify-content-center">
+                                <p class="d-flex justify-content-center m-0">Qty: {{item.quantity}}</p>
+                                <p class="d-flex justify-content-center m-0"><i class="fa-regular fa-at"></i>: {{item.category}}</p>
+                                <p class="d-flex justify-content-center m-0"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</p>
+                                <p class="d-flex justify-content-center m-1">
                                     <a class="btn btn-info btn-sm"
                                     href="{% url 'item-edit' item.id %}">Edit</a>
                                 </p>
-                                <p class="d-flex justify-content-center">
+                                <p class="d-flex justify-content-center m-1">
                                     <a class="btn btn-danger btn-sm"
                                     href="{% url 'item-delete' item.id %}">Delete</a>
                                 </p>

@@ -80,7 +80,7 @@ html {
 
 .itemDivs {
     border-radius: 10%;
-    margin: .5em;
+    margin: .2em;
     max-width: 9em;
     max-height: fit-content;
     box-shadow: 0 10px 20px #721c24;
