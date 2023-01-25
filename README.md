@@ -1,7 +1,8 @@
-# Inventory
-## Inventory is designed to help you keep track of all your items, wherever they are.
-## By creating your own categories, you have the freedom of naming them as you wish.
+# [Inventory](https://inventory-es.herokuapp.com/)
+## Inventory is designed to help you keep track of all your items, wherever they are. By creating your own categories, you have the freedom of naming them as you wish.
 ### Open the live webpage through this [link](https://inventory-es.herokuapp.com/).
+
+<img src="media/images/multi-device.png">
 
 # Table of contents
 * [Design and Build](#design-and-build)
@@ -11,7 +12,7 @@
     * [Lighthouse](#lighthouse)
     * [Validation](#validation)
     * [Manual Testing](#manual-tesing)
-    * [Responsiveness](#responsiveness)
+    * [Responsiveness](#responsive)
 * [Bugs](#bugs)
 * [User stories](#user-stories)
 * [Development and Deployment](#development-and-deployment)
@@ -166,7 +167,36 @@
 ## Manual testing
 ### For this project I performed manual tests, and they are as follows
 
-## Responsiveness
+## Responsive
+
+### No problems found when building the app and manually checking for responsiveness with chrome dev tools
+
+To generate a multi device mockup I used [Techsini](https://techsini.com/multi-mockup/index.php)
+
+To ensure my website is fully responsive I used [responsivedesignchecker](https://responsivedesignchecker.com/)
+* Mobile
+
+<img src="media/images/mobile-1.png">
+<img src="media/images/mobile-2.png">
+<img src="media/images/mobile-3.png">
+<img src="media/images/mobile-4.png">
+
+* Tablet
+
+<img src="media/images/tablet-1.png">
+<img src="media/images/tablet-2.png">
+
+* Laptop
+
+<img src="media/images/laptop-1.png">
+<img src="media/images/laptop-2.png">
+<img src="media/images/laptop-3.png">
+<img src="media/images/laptop-4.png">
+
+* Desktop
+
+<img src="media/images/desktop-1.png">
+<img src="media/images/desktop-2.png">
 
 
 # Bugs
@@ -190,17 +220,19 @@
                 add_item = ItemForm(request.user, request.POST)
                 if add_item.is_valid():
                     add_item.instance.category = get_object_or_404(Category, name=request.POST.get('category'), user=request.user)
-                    add_item.instance.user = request.user  <!-- This line fixed the bug -->
+                    add_item.instance.user = request.user  <!-- This line fixed the bug-->
                     add_item.save()
             ```
 
-* Getting Forbidden 403 CSRF verification failed when trying to get website responsiveness from Multi-devices generator websites
+* Getting `Forbidden 403 CSRF verification failed` when trying to get website responsiveness from Multi-devices generator websites
     * The attempts of fixing it:
         * Add to settings.py `X_FRAME_OPTIONS = 'ALLOW-FROM https://amiresponsive.co.uk/'`
         * Add `CSRF_TRUSTED_ORIGINS = ['https://amiresponsive.co.uk/']`  `CSRF_COOKIE_SECURE = True`
-        * Added to my views the xframe_options_excempt decorator
-    * All turned unsuccessful
-    * Later I learned that you cannot submit forms from your website inside iframes of other websites(not easily done, anyway), and as my website is login required, I couldn't access it
+        * Added to my views the `@xframe_options_excempt` decorator
+            * All turned unsuccessful
+            * Later I learned that you cannot submit forms from your website inside iframes of other websites(not easily done, anyway), and as my website is login required, I couldn't access it
+    * Fix: 
+        * I had to remove everything that was user/login related from my views, settings and template so I was able access my website in a multi-device mockup generator without logging in
 
 
 # User Stories
