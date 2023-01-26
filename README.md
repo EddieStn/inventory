@@ -22,6 +22,28 @@
 * [Acknowledgements](#acknowledgements)
 
 # Design and build
+## I've created a diagram for my finalized Django project using Django Graphviz to illustrate the connections between different applications of the project
+
+<img src="media/images/graphviz.png">
+
+[Graphviz SVG file](https://github.com/EddieStn/inventory/tree/main/media/images/graphviz.svg)
+
+## Wireframes
+### In my original design, I had a table for the category and item entries, but later I changed it because I had to make them very small to be responsive. Only now I realise that for mobile users it wouldn`t have been such a big issue.
+
+* Original design - tables instead of cards
+
+<img src="media/images/wireframe-original.png">
+
+* Finished product - flexible cards
+
+<img src="media/images/wireframe.png">
+
+## Model Diagrams
+
+<img src="media/images/category-model.png">
+
+<img src="media/images/item-model.png">
 
 
 # Features
