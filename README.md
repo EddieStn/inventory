@@ -14,7 +14,7 @@
     * [Manual Testing](#manual-testing)
     * [Responsiveness](#responsive)
 * [Bugs](#bugs)
-* [User stories](#user-stories)
+* [Agile Methodology](#agile-methodology)
 * [Development and Deployment](#development-and-deployment)
     * [Local development](#local-development)
     * [Deployment](#heroku-deployment)
@@ -29,7 +29,7 @@
 [Graphviz SVG file](https://github.com/EddieStn/inventory/tree/main/media/images/graphviz.svg)
 
 ## Wireframes
-### In my original design, I had a table for the category and item entries, but later I changed it because I had to make them very small to be responsive. Only now I realise that for mobile users it wouldn`t have been such a big issue.
+### In my original design, I had a table for the category and item entries, but later I changed it because I had to make them very small to be responsive. Only now I realise that for mobile users it wouldn`t have been such a big issue. But due to time constraints, I had to make it work.
 
 * Original design - tables instead of cards
 
@@ -46,7 +46,7 @@
 <img src="media/images/item-model.png">
 
 
-# Features
+# Features UX design
 ### Given that the website requires a user to be logged in, the first page is the log-in/signup
 * Tip: Remember your credentials, as forgotten password is not yet implemented
 
@@ -71,6 +71,7 @@
 ## Sidebar is the place where most of the action takes place.
 On mobile devices, the sidebar is shrunk, showing only the icons. Clicking on the icons will make it larger with that specific section collapsed.
 
+<img src="media/images/sidebar-mobile.png">
 <img src="media/images/sidebar.png">
 
 * Home button
@@ -474,7 +475,9 @@ To ensure my website is fully responsive I used [responsivedesignchecker](https:
         * I had to remove everything that was user/login related from my views, settings and template so I was able access my website in a multi-device mockup generator without logging in
 
 
-# User Stories
+# Agile Methodology 
+## This Project was built following agile methodology and practices
+## User Stories
 
 ## [#1 Create an account](https://github.com/EddieStn/inventory/issues/1)
 ### As a Site User I want to be able to create an account so that my items are saved
@@ -891,6 +894,19 @@ admin.site.register(Category, CategoryAdmin)
         {% endfor %}
         ```
 
+## Could have user stories
+* [#11 Profile page](https://github.com/EddieStn/inventory/issues/11)
+    * As a Site user I want to be able to Access my profile page so that I can review my details
+* [#12 Forgot details](https://github.com/EddieStn/inventory/issues/12)
+    * As a Site user I want to be able to click on a forgot username/password link so that I can reset my credentials in case I forgot them
+* [#13 Email alerts](https://github.com/EddieStn/inventory/issues/13)
+    * As a Site user I want to be able to receive alerts so that I am reminded when an item is low on quantity
+* [#14 Buy more](https://github.com/EddieStn/inventory/issues/14)
+    * As a Site user I want to be able to add a link of a shop to an item so that I can get redirected to that shop quickly
+* [#15 Upload image](https://github.com/EddieStn/inventory/issues/15)
+    * As a Site user I want to be able to upload an image to an item so that I can visualize it better
+
+
 # Development and Deployment
 ## Local development
 * Create your Django app. In the terminal write the following in order:
@@ -898,7 +914,7 @@ admin.site.register(Category, CategoryAdmin)
     2. Install database libraries dj_database_url and psycopg2 library: `pip3 install dj_database_url psycopg2`
     3. Install Cloudinary libraries to manage photos: `pip3 install dj-3-cloudinary-storage`
     4. Create file for requirements file: `pip freeze --local > requirements.txt`
-    5. Create your project: `django-admin startproject your_project_name .`
+    5. Create your project: `django-admin startproject your_project_name .` ( remember the . at the end)
     6. Create your app: `django-admin startapp your_app_name`
     7. Migrate: `python3 manage.py makemigrations` and `python3 manage.py migrate`
     8. Run the server to test if the app is installed: `python3 manage.py runserver`
@@ -910,8 +926,8 @@ admin.site.register(Category, CategoryAdmin)
 
     * Sign up / Log in to Heroku
     * From the main Heroku Dashboard page select `New` and then `Create New App`
-    * Give the project a name - in my case inventory-es and select a region, then select create app.
-    * This will create the app within Heroku and bring you to the deploy tab.
+    * Give the project a name - in my case inventory-es and select a `region`, then select `create app`.
+    * This will create the app within Heroku.
     * For the database, I used ElephantSQL
         * Navigate to ElephantSQL.com and log-in/sign-up.
         * Create new instance
@@ -988,7 +1004,6 @@ admin.site.register(Category, CategoryAdmin)
     * To have DEBUG set to true for your local development and false for Heroku:
         * In env.py add another line `os.environ['DEV'] = 'Yes please!'` ( note that the value you set does not matter )
         * In settings.py and DEBUG = False to `DEBUG = 'DEV' in os.environ`
-* For this project's use of the Summernote editor to function in Heroku, add the following line to settings.py: `X_FRAME_OPTIONS = "SAMEORIGIN"`
 * In Heroku settings config vars change the DISABLE_COLLECTSTATIC value to 0
 * 'Choose a branch to deploy' should be 'main' and search for your repository
 * To manually deploy click the button 'Deploy Branch'
@@ -1020,7 +1035,7 @@ admin.site.register(Category, CategoryAdmin)
 
 # Acknowledgements
 
-* Thanks to my mentor Chris Quinn for guidance
-* Thanks to Code Institute tutors, for helping me with filtering, user-specific pages and bug fixes
+* Thanks to my mentor Chris Quinn for guidance and for providing me with the resources needed to expand my Django knowledge
+* Thanks to Code Institute tutors Scott, Jason, Oisin, Steve, Ed, and Gemma for helping me with filtering, user-specific pages, and bug fixes
 * Thanks to Mounir for answering my [stack overflow post](https://stackoverflow.com/questions/75208985/handling-form-fields-in-django-for-logged-in-user)
-* Thanks to Roman Rakic for discovering the bug in my code - [slack thread](https://code-institute-room.slack.com/archives/C026PTF46F5/p1673898571942309)
+* Thanks to Roman Rakic for taking the time and discovering the bug in my code - [slack thread](https://code-institute-room.slack.com/archives/C026PTF46F5/p1673898571942309)
