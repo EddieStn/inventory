@@ -3,6 +3,8 @@ html {
     letter-spacing: 1px;
 }
 
+/* **************** Colors section **************** */
+
 .bg-nav {
     background-color: #c9c9c9;
 }
@@ -31,6 +33,8 @@ html {
     color: #721c24 !important;
 }
 
+/* **************** Links and buttons section **************** */
+
 .link:hover, 
 .link:active {
     color: #117777 !important;
@@ -48,6 +52,8 @@ html {
     color: #dde01b !important;
 }
 
+/* **************** Category section **************** */
+
 .category {
     width: 18em;
 }
@@ -64,11 +70,15 @@ html {
 
 .catName {
     margin-right: 1em;
-    border-radius: 20%;
+    border-radius: 10%;
     background-color: #721c24;
     color: #dde01b;
     text-decoration: none;
+    max-height: 4em;
+    word-break: break-all;
+    overflow: hidden;
 }
+
 .catName:hover {
     color: #721c24;
     background-color: #dde01b;
@@ -78,15 +88,28 @@ html {
     width: 18em;
 }
 
+/* **************** Items section **************** */
+
+.welcome {
+    background-color: #721c24;
+    color: #dde01b;
+    width: fit-content;
+    border-radius: 10%;
+    padding: .5em;
+}
+
 .itemDivs {
     border-radius: 10%;
     margin: .2em;
-    max-width: 9em;
+    max-width: 8em;
     max-height: fit-content;
     box-shadow: 0 10px 20px #721c24;
     word-break: break-all;
 }
 
+.notes {
+    font-size: small;
+}
 
 .searchBar {
     max-width: 15em;
@@ -95,6 +118,8 @@ html {
 hr {
     margin: .3em;
 }
+
+/* **************** Alerts section **************** */
 
 .alert-error {
     color: #721c24;
@@ -108,13 +133,5 @@ hr {
 }
 
 .alert {
-    padding: .5em;
-}
-
-.welcome {
-    background-color: #721c24;
-    color: #dde01b;
-    width: fit-content;
-    border-radius: 10%;
     padding: .5em;
 }

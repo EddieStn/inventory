@@ -84,7 +84,7 @@
                                     <input name="add_item" type="hidden" value="add_item">
                                     {{ add_item.name | as_crispy_field }}
                                     {{ add_item.quantity | as_crispy_field }}
-                                    <select name="category" required>
+                                    <select name="category" class="form-select form-select-sm" required>
                                         {% for category in categories %}
                                         <option value="{{ category.name }}">{{ category.name }}</option>
                                         {% endfor %}
@@ -139,10 +139,10 @@
                         {% for item in items %}
                         {% if item.user == request.user %}
                             <div class="itemDivs light-bg">
-                                <h2 class="d-flex justify-content-center text-red">{{item.name}}</h2>
+                                <h5 class="d-flex justify-content-center text-red">{{item.name}}</h5>
                                 <p class="d-flex justify-content-center m-0">Qty: {{item.quantity}}</p>
-                                <p class="d-flex justify-content-center m-0"><i class="fa-regular fa-at"></i>: {{item.category}}</p>
-                                <p class="d-flex justify-content-center m-0"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</p>
+                                <p class="d-flex justify-content-center m-0 notes"><i class="fa-regular fa-at"></i>: {{item.category}}</p>
+                                <p class="d-flex justify-content-center m-0 notes"><i class="fa-regular fa-pen-to-square"></i>: {{item.notes}}</p>
                                 <p class="d-flex justify-content-center m-1">
                                     <a class="btn btn-info btn-sm"
                                     href="{% url 'item-edit' item.id %}">Edit</a>

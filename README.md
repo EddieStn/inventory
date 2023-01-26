@@ -11,7 +11,7 @@
 * [Testing](#testing)
     * [Lighthouse](#lighthouse)
     * [Validation](#validation)
-    * [Manual Testing](#manual-tesing)
+    * [Manual Testing](#manual-testing)
     * [Responsiveness](#responsive)
 * [Bugs](#bugs)
 * [User stories](#user-stories)
@@ -47,6 +47,7 @@
 <img src="media/images/alerts.png">
 
 ## Sidebar is the place where most of the action takes place.
+On mobile devices, the sidebar is shrunk, showing only the icons. Clicking on the icons will make it larger with that specific section collapsed.
 
 <img src="media/images/sidebar.png">
 
@@ -61,7 +62,6 @@
     * Collapsable button for `Add Item` form
 
 <img src="media/images/item-form.png">
-
 
 * Categories entry
     * Categories are clickable and are used to filter all items created for a specific category
@@ -89,13 +89,15 @@
     * Adding a new Item is dependant on a category, you cannot add items without a category
 
 ### Item entries
-* Once an item is created, it will be displayed on the main page
+* Once an item is created, it will be displayed on the main page, along with the search bar
 * Items can be edited/updated and/or deleted
 * You can search for items or you can filter them by clicking on a category
 * Once in a specific category, clicking the home button will take you back to all items
 * Item counter tells you how many items you have created
 
 <img src="media/images/items-entry.png">
+
+<img src="media/images/search-bar.png">
 
 * Editing an item will pop up the Edit Item page where you can update all the fields
 
@@ -165,7 +167,222 @@
 <img src="media/images/pep8.png">
 
 ## Manual testing
-### For this project I performed manual tests, and they are as follows
+### For this project I performed manual tests, and they are as follows:
+
+### For User Story [#1 Create account](https://github.com/EddieStn/inventory/issues/1)
+As a Site User I want to be able to create an account so that my items are saved
+
+* Sign-up, Sign-in, Logout pages
+    * Testing registering with a username taken, blank username/password, too short password, password containing unallowed characters
+    * Testing logging in with the wrong credentials and blank inputs
+    * All tests passed
+
+<img src="media/images/sign-up-test.png">
+
+<img src="media/images/sign-in-test.png">
+
+<img src="media/images/logout-page.png">
+
+### Testing buttons
+* Sign Up button in the nav
+    * Expected output: Bring up the Sign up page
+    * Actual output: Expectation confirmed
+
+* Sign in button in the nav
+    * Expected output: Bring up the Sign in page
+    * Actual output: Expectation confirmed
+
+* Sign Up button in the Sign up form
+    * Expected output: 
+        * Form valid > Create account
+        * Form invalid > Alert user of invalid inputs
+    * Actual output: Expectation confirmed
+
+* Sign in button in the Sign in form
+    * Expected output:
+        * Form valid -> Log in to your account
+        * Form invalid -> Alert user of the invalid inputs
+    * Actual output: Expectation confirmed
+
+* Logout button in the nav
+    * Expected output: Bring up the logout page allowing the user to confirm
+    * Actual output: Expectation confirmed
+
+* Sign out button in the Logout page
+    * Expected output: Logout
+    * Actual output: Expectation confirmed
+
+* Cancel button in the Logout page
+    * Expected output: Redirect to home page
+    * Actual output: Expectation confirmed
+
+### For User Story [#2 Create categories](https://github.com/EddieStn/inventory/issues/2)
+As a Site user I want to be able to create different categories so that I can add items in different categories
+### Testing buttons
+* Category link in the sidebar
+    * Expected output: 
+        * Bring up the category entries and form
+        * Clicking again will collapse the category entries and form
+    * Actual output: Expectation confirmed
+
+* Add category button in the category form
+    * Expected output: 
+        * Form valid -> Create category
+        * Form invalid -> Alert user of the invalid input
+
+* Category name link
+    * Expected output: Bring up the clicked category page with the corresponding items
+    * Actual output: Expectation confirmed
+
+* Category Edit button
+    * Expected output: Bring up the Edit category form page
+    * Actual output: Expectation confirmed
+
+* Category Delete button
+    * Expected output: Bring up the Delete category confirmation page
+    * Actual output: Expectation confirmed
+
+* Category form validation
+
+<img src="media/images/cat-form.png">
+<img src="media/images/cat-form2.png">
+
+* Category name validation
+    * A name too long will break through the container
+
+<img src="media/images/category-form-test-before.png">
+
+* Fixed by adding this css code to the category name
+    ```
+    max-height: 4em;
+    word-break: break-all;
+    overflow: hidden;
+    ```
+* This will cut out most of the text, only showing the users a sample
+    * What I should've done is have a smaller size for max_length instead of 100 characters
+
+<img src="media/images/category-form-test-after.png">
+
+
+### For User Story [#3 Add items](https://github.com/EddieStn/inventory/issues/3)
+As a Site Admin / User I can create items so that I can keep track of them
+
+### Testing buttons
+* Add items link in the sidebar menu
+    * Expected output: 
+        * Bring up the Add item form
+        * Clicking again will collapse the Add item form
+    * Actual output: Expectation confirmed
+
+* Add Item button in the form
+    * Expected output: 
+        * Form valid -> Create the item
+        * Form invalid -> Alert the user of the invalid input
+    * Actual output: Expectation confirmed
+
+* Add Item form validation
+    * Name field is required
+    * Quantity is required, but 0 is a valid input. This is a design choice as users might want to create a category of items they don't have
+    * Category is required, the latest category created will be displayed as default
+    * Notes is optional
+
+* Category name too long in the item form handled by Bootstrap class `class="form-select form-select-sm"` as it is a `<select>` tag
+
+<img src="media/images/item-form-test-category.png">
+
+### For User Story [#4 Update Items](https://github.com/EddieStn/inventory/issues/4)
+As a Site User I want to be able to update the added items so that I can edit or delete them
+* Items created are being displayed on the main page
+
+<img src="media/images/items-created.png">
+
+### Testing buttons
+
+* Edit button
+    * Expected output: Bring up the Edit item form page
+    * Actual output: Expectation confirmed
+
+* Edit item form page
+    * Expected output:
+        * Save button will save the updated item and redirect to home page
+        * Cancel button will cancel any changes and redirect the user back to home page 
+    * Actual output: Expectation confirmed 
+
+* Delete button
+    * Expected output: Bring up the Delete item confirmation page
+    * Actual output: Expectation confirmed
+
+* Delete Item page
+    * Expected output:
+        * Delete button will delete the item
+        * Cancel button will redirect the user back to home page
+    * Actual output: Expectation confirmed
+
+* Item validation
+    * I designed the item containers as follows
+        * To prevent text from breaking outside of their containers
+        ```
+        .itemDivs {
+            border-radius: 10%;
+            margin: .2em;
+            max-width: 8em;
+            box-shadow: 0 10px 20px #721c24;
+            max-height: fit-content;
+            word-break: break-all;
+        }
+        ```
+
+<img src="media/images/item-entry-validation.png">
+
+### For User Story [#5 Sort items](https://github.com/EddieStn/inventory/issues/5)
+As a Site User I want to be able to see the most recent items created first so that I can easily see what I`ve just added
+
+* Due to having [-timestamp] in the Item model Meta class, the most recent created/updated item will be displayed first
+```
+created_on = models.DateTimeField(auto_now_add=True)
+timestamp = models.DateTimeField(auto_now=True)
+
+class Meta:
+    ordering = ['-timestamp']
+```
+* Result: PASS
+
+### For User Story [#6 Filter items](https://github.com/EddieStn/inventory/issues/6)
+As a Site User I want to be able to filter and search for items so that I can find them quicker
+
+* Expected output:
+    * Clicking on a category name will direct the user to a new page `/?category=category-name` with all the items corresponding to it
+    * Searching for a query will display only the item or items containing the query in the name or in the notes
+* Actual output: Expectation confirmed
+
+### Testing search bar buttons
+* Search icon button
+    * Expected output:
+        * Input for existing query -> Show only the item/items containing the query
+        * Input for non-existing query -> Alert user that the item does not exist
+        * Input blank -> Alert user that it was an invalid request
+    * Actual output: Expectation confirmed
+* Back button 
+    * Expected output: Redirect user back to home page with all of the items
+    * Actual output: Expectation confirmed
+
+### For User Story [#7 Manage Inventory](https://github.com/EddieStn/inventory/issues/7)
+As a Site Admin I can create, read, update and delete items and categories so that I can manage my inventory
+
+* Expected output: I can have full CRUD functionality on the admin panel
+* Actual output: Expectation confirmed
+
+### For User Story [#9 View Items](https://github.com/EddieStn/inventory/issues/9)
+As a Site user I can view a list of items so that I can interact with them
+
+* Expected output: All items are displayed nicely on the home page
+* Actual output: Expectation confirmed
+
+### For User Story [#10 Private access](https://github.com/EddieStn/inventory/issues/10)
+As a Site User I want to be able to see only the items and categories that I create so that my inventory will be private and not accessed by someone else
+
+* Expected output: The logged in user can view only his categories and items
+* Actual output: Expectation confirmed
 
 ## Responsive
 
